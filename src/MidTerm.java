@@ -122,16 +122,14 @@ public class MidTerm {
 		}
 		
 		finalTotal = subtotal * salesTax;
-		System.out.printf("%14s $%-10s\r\n","Subtotal:", subtotal);
-		System.out.printf("%14s $%-10s","SalesTax:", salesTax-1);
-		System.out.printf("%14s $%-10s\r\n","Total:", finalTotal);
+		System.out.printf("Subtotal: %.2f\r\n", subtotal);
+		System.out.printf("SalesTax: %.2f\r\n", salesTax);
+		System.out.printf("FinalTotal: %.2f\r\n", finalTotal);
 		
 		return finalTotal;
 	}
 	
-	public static void getChange() {
-		//Logan
-	}
+	
 	
 
 	
