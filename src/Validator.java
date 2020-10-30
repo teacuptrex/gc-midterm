@@ -8,6 +8,8 @@ import java.util.Set;
 
 public class Validator {
 
+	static Scanner scnr = new Scanner(System.in);
+			
 	public static String getString(Scanner scnr, String prompt) {
 		System.out.print(prompt);
 		String input = scnr.nextLine();
@@ -127,5 +129,95 @@ public class Validator {
 			}
 		}
 	}
+	public static boolean creditCard() {
+		getCreditCardNumber();
+		checkCardholderName();
+		checkCVV();
+		return true;
+	}
+	//Function that obtains the credit card number andvalidates it with the credit card validator
+		public static String getCreditCardNumber() {
+
+			String creditCardFinal = null;
+			boolean flag = true;
+
+			do {
+				try {
+					System.out.println("Please enter the first four digits of your credit card");
+					int creditCardFirst4 = scnr.nextInt();
+					System.out.println("Please enter the second four digits of your credit card");
+					int creditCardSecond4 = scnr.nextInt();
+					System.out.println("Please enter the third four digits of your credit card");
+					int creditCardThird4 = scnr.nextInt();
+					System.out.println("Please enter the fourth four digits of your credit card");
+					int creditCardLast4 = scnr.nextInt();
+					creditCardFinal = creditCardFirst4 + "-" + creditCardSecond4 + "-" + creditCardThird4 + "-"
+							+ creditCardLast4;
+					if (isNumberValid(creditCardFinal)) {
+						flag = false;
+					} else {
+						System.out.println("That was not a valid credit card number");
+					}
+
+				} catch (InputMismatchException e) {
+					System.out.println("That is not a valid credit card number");
+					scnr.nextLine();
+				}
+			} while (flag);
+			scnr.nextLine();
+			return creditCardFinal;
+		}
+		//credit cardvalidator
+		public static boolean isNumberValid(String creditCardNumber) {
+
+			if (creditCardNumber.matches("([1-9]{4})-([1-9]{4})-([1-9]{4})-([1-9]{4})")) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		//Checks if the cardholder name is a valid name. First and last name with optional middle initial.
+		public static String checkCardholderName() {
+			boolean flag = true;
+			String name = null;
+			do {
+				try {
+					System.out.println("Please enter your cardholder name");
+					name = scnr.nextLine();
+
+					if (name.matches("[a-zA-Z]+ ([A-Za-z] )?([A-Za-z][A-Za-z]+) ?")) {
+						flag = false;
+					} else {
+						System.out.println("That name was not valid");
+					}
+				} catch (InputMismatchException e) {
+					System.out.println("That name was not valid");
+				}
+			} while (flag);
+
+			return name;
+		}
+		//Checks if the inputted CVV is valid
+		public static int checkCVV() {
+			boolean flag = true;
+			Integer CVV = 0;
+			do {
+				try {
+					System.out.println("Please enter you credit card CVV");
+					CVV = scnr.nextInt();
+					if (String.valueOf(CVV).length() == 3) {
+						flag = false;
+					} else {
+						System.out.println("That was not a valid CVV");
+					}
+
+				} catch (InputMismatchException e) {
+					System.out.println("That was not a valid CVV");
+					scnr.nextLine();
+				}
+			} while (flag);
+			return CVV;
+		}
+
 
 }
