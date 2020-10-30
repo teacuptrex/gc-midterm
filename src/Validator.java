@@ -219,16 +219,16 @@ public class Validator {
 			return CVV;
 		}
 		// check number input + validator
-		public static boolean checkNumber() {
+		public static String checkNumber() {
 		boolean flag = true;
+		String checkNumber = "";
 		do {
 			try {
 				System.out.println("Please enter your check number.");
-				String checkNumber = scnr.next();
+				checkNumber = scnr.next();
 				if (checkNumber.matches("[0-9]{4}")) {
 					System.out.println("Thanky you");
 					flag = false;
-					return true;
 				}
 				else {
 					System.out.println("That was not a valid input");
@@ -238,7 +238,7 @@ public class Validator {
 				}
 			}
 		while(flag);
-		return false;
+		return checkNumber;
 		}
 
 

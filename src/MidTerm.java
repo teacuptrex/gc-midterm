@@ -32,6 +32,9 @@ public class MidTerm {
 		//calculate total and print merchant receipt for customer
 		double total = printReceipt(orderItems);
 		
+		//variable for change amount for later use
+		double amtChange = 0;
+		
 		// printReciept();
 		// String paymentMethod = scnr.next();
 		// getChange()
@@ -41,22 +44,67 @@ public class MidTerm {
 
 			double paymentAmount = Validator.getDouble(scnr,"How much would you like to pay with " + paymentOption + "? (enter a dollar amount");
 			
-			if(paymentOption.equals("cash")) {		
+			if(paymentOption.equals("cash")) {	
+				//if cash, create new Cash obj. and add to payments
 				PaymentType payment = new Cash(paymentAmount);
 				payments.add(payment);
-			} else if (paymentOption.equals("credit")) {
 				
-				PaymentType payment = new Credit(paymentAmount);
+			} else if (paymentOption.equals("credit")) {
+				//if credit, get credit card info (and validate user inputs) and add obj. to payments
+				String name = Validator.checkCardholderName();
+				String cardNum = Validator.getCreditCardNumber();
+				int cvv = Validator.checkCVV();
+				PaymentType payment = new Credit(cardNum,name,cvv,paymentAmount);
 				payments.add(payment);
+				
 			} else if (paymentOption.equals("check")) {
-				PaymentType payment = new Check(paymentAmount);
+				//if check, get check number (and validate user inputs) and add obj. to payments
+				String check = Validator.checkNumber();
+				PaymentType payment = new Check(check,paymentAmount);
 				payments.add(payment);
+				
 			} else {
+				//validate user selection and retry
 				System.out.println("Invalid selection, please try again.");
 			}
 			
+			if(total - paymentAmount == 0) {
+				//if payment is complete, exit
+				break;
+			} else if(total - paymentAmount > 0) {
+				//if payment is incomplete, print remaining and ask for another payment method
+				total = total - paymentAmount;
+				System.out.printf("Remaining: %.2f\r\n", total);				
+			} else if(paymentOption.equals("cash")) {
+				//if payment is more than the total & the payment type was cash, give change and exit
+				amtChange = getChange(total);
+				System.out.printf("Your change: %.2f\r\n", amtChange);
+				break;
+			}
+				
 		} while(true);
 		
+		//print out customer receipt including payment types and applied amounts
+		printReceipt(orderItems);
+		System.out.println("Payments applied: ");
+		for(int i = 0; i < payments.size(); i++) {
+			if(payments.get(i) instanceof Cash) {
+				if(amtChange != 0) {
+					System.out.printf("Cash paid: %.2f\r\n", payments.get(i).getAmtGiven());
+					System.out.printf("Change given: %.2f\r\n",amtChange);
+				} else {
+					System.out.printf("Cash paid: %.2f\r\n", payments.get(i).getAmtGiven());
+				}
+			} else if (payments.get(i) instanceof Check) {
+				System.out.printf("Check number %4s for: %.2f\r\n", ((Check) payments.get(i)).getCheck(),payments.get(i).getAmtGiven());
+			} else if (payments.get(i) instanceof Credit) {
+				
+				System.out.printf("Credit %16s for: %.2f\r\n", "************" + ((Credit) payments.get(i)).getCreditCardNumber().substring(11),payments.get(i).getAmtGiven());
+			} else {
+				
+			}
+		}
+		System.out.println("Thank you for visiting BurgerFi");
 
 		
 	}

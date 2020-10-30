@@ -11,6 +11,9 @@ public class Check extends PaymentType {
 		super(amtGiven);
 		this.check = check;
 	}
+	public Check() {
+		
+	}
 
 	// check getter
 	public String getCheck() {
