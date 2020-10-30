@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class MidTerm {
 	static Scanner scnr = new Scanner(System.in);
 	static ArrayList<Meal> menu;
+	static ArrayList<PaymentType> payments;
 
 	public static void main(String[] args) {
 
@@ -31,10 +32,32 @@ public class MidTerm {
 		//calculate total and print merchant receipt for customer
 		double total = printReceipt(orderItems);
 		
-		System.out.println("How will you be paying for that? Cash, credit, or check?");
 		// printReciept();
 		// String paymentMethod = scnr.next();
 		// getChange()
+		do {
+			System.out.println("How will you be paying for that? Cash, credit, or check?");
+			String paymentOption = scnr.nextLine().toLowerCase();
+
+			double paymentAmount = Validator.getDouble(scnr,"How much would you like to pay with " + paymentOption + "? (enter a dollar amount");
+			
+			if(paymentOption.equals("cash")) {		
+				PaymentType payment = new Cash(paymentAmount);
+				payments.add(payment);
+			} else if (paymentOption.equals("credit")) {
+				
+				PaymentType payment = new Credit(paymentAmount);
+				payments.add(payment);
+			} else if (paymentOption.equals("check")) {
+				PaymentType payment = new Check(paymentAmount);
+				payments.add(payment);
+			} else {
+				System.out.println("Invalid selection, please try again.");
+			}
+			
+		} while(true);
+		
+
 		
 	}
 
@@ -129,7 +152,15 @@ public class MidTerm {
 		return finalTotal;
 	}
 	
-	
+	//Calculates change when the user pays with cash
+	public static double getChange(double total) {
+		System.out.println("How much money are you giving us?");
+		double moneyIn = scnr.nextDouble();
+		double change = total - moneyIn;
+		return change;
+		
+		
+	}
 	
 
 	

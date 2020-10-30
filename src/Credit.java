@@ -1,8 +1,7 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
+
 
 public class Credit extends PaymentType {
-	static Scanner scnr = new Scanner(System.in);
+	
 
 	private int CVV;
 	private String cardholder;
@@ -26,13 +25,24 @@ public class Credit extends PaymentType {
 	}
 
 
-	//cardHolder gettter
+	//cardHolder getter
 	public String getCardholder() {
 		return cardholder;
 	}
-	//cardholder setter
+	//cardHolder setter
 	public void setCardholder(String cardholder) {
 		this.cardholder = cardholder;
 	}
 	
+	//constructors
+	public Credit() {
+	}
+	
+	public Credit(String creditCardNumber, String cardholder, int CVV, double amtGiven) {
+		super(amtGiven);
+		this.creditCardNumber = creditCardNumber;
+		this.cardholder = cardholder;
+		this.CVV = CVV;
+
+	}
 }
