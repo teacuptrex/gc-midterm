@@ -54,7 +54,7 @@ public class MidTerm {
 			System.out.println("How will you be paying for that? Cash, credit, or check?");
 			String paymentOption = scnr.nextLine().toLowerCase();
 
-			double paymentAmount = Validator.getDouble(scnr,"How much would you like to pay with " + paymentOption + "? (enter a dollar amount");
+			double paymentAmount = Validator.getDouble(scnr,"How much would you like to pay with " + paymentOption + "? (enter a dollar amount)");
 			
 			if(paymentOption.equals("cash")) {	
 				//if cash, create new Cash obj. and add to payments
