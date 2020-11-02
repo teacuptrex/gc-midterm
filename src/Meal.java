@@ -5,7 +5,7 @@ public class Meal {
 	public Meal() {
 
 	}
-	private int orderNumber;
+	
 	private String name;
 	private String category;
 	private String description;
