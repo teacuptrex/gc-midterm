@@ -147,7 +147,7 @@ public class MidTerm {
 		}
 		System.out.println("Thank you for visiting BurgerFi");
 
-		
+		scnr.close();
 	}
 
 
