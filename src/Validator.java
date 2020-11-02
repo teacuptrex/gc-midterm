@@ -135,10 +135,10 @@ public class Validator {
 		checkCVV();
 		return true;
 	}
-	//Function that obtains the credit card number andvalidates it with the credit card validator
+	//Function that obtains the credit card number and validates it with the credit card validator
 		public static String getCreditCardNumber() {
 
-			String creditCardFinal = null;
+			String creditCardFinal = "";
 			boolean flag = true;
 
 			do {
@@ -178,7 +178,7 @@ public class Validator {
 		//Checks if the cardholder name is a valid name. First and last name with optional middle initial.
 		public static String checkCardholderName() {
 			boolean flag = true;
-			String name = null;
+			String name = "";
 			do {
 				try {
 					System.out.println("Please enter your cardholder name");
@@ -196,7 +196,7 @@ public class Validator {
 
 			return name;
 		}
-		//Checks if the inputted CVV is valid
+		//Checks if the inputed CVV is valid
 		public static int checkCVV() {
 			boolean flag = true;
 			Integer CVV = 0;
@@ -216,6 +216,28 @@ public class Validator {
 				}
 			} while (flag);
 			return CVV;
+		}
+		// check number input + validator
+		public static String checkNumber() {
+		boolean flag = true;
+		String checkNumber = "";
+		do {
+			try {
+				System.out.println("Please enter your check number.");
+				checkNumber = scnr.next();
+				if (checkNumber.matches("[0-9]{4}")) {
+					System.out.println("Thanky you");
+					flag = false;
+				}
+				else {
+					System.out.println("That was not a valid input");
+				}
+			}catch(InputMismatchException e) {
+			System.out.println("That was not a valid input");
+				}
+			}
+		while(flag);
+		return checkNumber;
 		}
 
 

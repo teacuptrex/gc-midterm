@@ -1,6 +1,6 @@
 
 public class PaymentType {
-	public double amtGiven;
+	private double amtGiven;
 	
 	public double getAmtGiven() {
 		return amtGiven;
@@ -9,7 +9,10 @@ public class PaymentType {
 		this.amtGiven = amtGiven;
 	}
 	public PaymentType() {
-		super();
+
+	}
+	public PaymentType(double amtGiven) {
+		this.amtGiven = amtGiven;
 	}
 	@Override
 	public String toString() {
