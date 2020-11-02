@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,4 +21,19 @@ class MidtermJUnitTest {
 	assertEquals(expected, actual);
 	
 }
+	
+	@Test
+	void testGetChange() {
+		double expected = 0.0;
+		double actual = MidTerm.getChange(5, 5);
+		assertEquals(expected,actual);
+	}
+	
+	@Test
+	void testGetChange2() {
+		double expected = -1.0;
+		double actual = MidTerm.getChange(6, 5);
+		assertEquals(expected,actual);
+	}
+	
 }
