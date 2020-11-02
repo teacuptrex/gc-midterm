@@ -1,0 +1,26 @@
+1~~~Burger~~~BURGERFI BURGER~~~(Double Natural Angus Beef, Lettuce, Tomato, BurgerFi Sauce)~~~655~~~$6.57
+2~~~Burger~~~ULTIMATE BACON CHEESEBURGER~~~(Double Natural Angus Beef, Double American Cheese, Double Bacon)~~~840~~~$9.17
+3~~~Burger~~~BREAKFAST ALL DAY BURGER~~~(Natural Angus Beef, Bacon, American Cheese, Maple Syrup, Fried Egg, Hash Brown, Grilled Onions, Ketchup)~~~828~~~$8.37
+
+	
+
+4~~~Hotdog~~~AMERICAN WAGYU BEEF HOT DOG~~~(Beef Hot Dog)~~~310~~~$3.97
+5~~~Hotdog~~~NEW YORK STYLE DOG~~~(American Wagyu Beef Hot Dog, Kraut, Mustard )~~~340~~~$4.47
+6~~~Hotdog~~~TEXAS STYLE DOG~~~(American Wagyu Beef Hot Dog, Chili, Cheese, Hot Sauce)~~~456~~~$4.97
+
+
+
+7~~~Shake~~~Red Velvet~~~(Red Velvet Ice Cream)~~~740~~~$4.97
+8~~~Shake~~~Vanilla~~~(Vanilla Ice Cream)~~~880~~~$4.97
+9~~~Shake~~~Chocolate~~~(Chocolate Ice Cream)~~~880~~~$4.97
+10~~~Shake~~~Peanut Butter Shake~~~(Peanut Butter Ice Cream)~~~1060~~~4.97
+11~~~Shake~~~Oreo Shake~~~(Oreos Ice Cream)~~~750~~~4.97
+12~~~Shake~~~Strawberry Shake~~~(Strawberry Ice Cream)~~~750~~~4.97
+
+
+
+
+
+
+
+

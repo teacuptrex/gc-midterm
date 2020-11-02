@@ -2,19 +2,28 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 
 public class MidTerm {
+	// private static List<Order> orderedProduct = new ArrayList<>();
+	private static Map<Integer, Meal> mealList = new TreeMap<>();
+	private static Path filePath = Paths.get("meals.txt");
+	
 	static Scanner scnr = new Scanner(System.in);
 	static ArrayList<Meal> menu;
 	static ArrayList<PaymentType> payments;
 
 	public static void main(String[] args) {
+
 
 		
 		createMeals();
@@ -111,7 +120,7 @@ public class MidTerm {
 
 	public static ArrayList<Meal> createMeals() {
 		//store file path for use in reading meals .txt file		
-		String fileName = ""; //add file name here after creation
+		String fileName = "meals.txt"; //add file name here after creation
 		Path filePath = Paths.get(fileName);
 		try {
 			//keep this in a try/catch because file methods throw IOExceptions which must be handled
@@ -120,7 +129,7 @@ public class MidTerm {
 			ArrayList<Meal> meals = new ArrayList<>();
 			
 			for(String entry : entries) {
-				String[] ln = entry.split("");//split on delimiter in file, keep in mind any regex-reserved characters which will need to be escaped out using //
+				String[] ln = entry.split("~");//split on delimiter in file, keep in mind any regex-reserved characters which will need to be escaped out using //
 				meals.add(new Meal());//add specific parsers at specified indices to match the variable types for Meal class based on expected file input
 			}
 			return meals;
@@ -210,7 +219,27 @@ public class MidTerm {
 		
 	}
 	
+	 public static void appendToFile(Meal meals) throws IOException {
+	        if (Files.notExists(filePath)) {
+	            try {
+	                Files.createFile(filePath);
+	            } catch (IOException e) {
+	                System.out.println("Something went wrong.");
+	                // e.printStackTrace();
+	            }
+	        }
+	        List<String> mealList = Arrays.asList(meals.toString());
+	        
+	        Files.write(filePath, mealList, StandardOpenOption.APPEND);
+	
+	
 
 	
-	
+
+		
+
+	}
 }
+	
+	
+
