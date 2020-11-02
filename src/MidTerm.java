@@ -23,7 +23,7 @@ public class MidTerm {
 	
 	static Scanner scnr = new Scanner(System.in);
 	static ArrayList<Meal> menu;
-	static ArrayList<PaymentType> payments;
+	static ArrayList<PaymentType> payments = new ArrayList<>();
 
 	public static void main(String[] args) {
 
@@ -60,6 +60,19 @@ public class MidTerm {
 				//if cash, create new Cash obj. and add to payments
 				PaymentType payment = new Cash(paymentAmount);
 				payments.add(payment);
+				if(total - paymentAmount == 0.0) {
+					//if payment is complete, exit
+					break;
+				} else if(total - paymentAmount > 0) {
+					//if payment is incomplete, print remaining and ask for another payment method
+					total = total - paymentAmount;
+					System.out.printf("Remaining: %.2f\r\n", total);				
+				} else if(paymentOption.equals("cash")) {
+					//if payment is more than the total & the payment type was cash, give change and exit
+					amtChange = getChange(total);
+					System.out.printf("Your change: %.2f\r\n", amtChange);
+					break;
+				}
 				
 			} else if (paymentOption.equals("credit")) {
 				//if credit, get credit card info (and validate user inputs) and add obj. to payments
@@ -68,31 +81,44 @@ public class MidTerm {
 				int cvv = Validator.checkCVV();
 				PaymentType payment = new Credit(cardNum,name,cvv,paymentAmount);
 				payments.add(payment);
+				if(total - paymentAmount == 0.0) {
+					//if payment is complete, exit
+					break;
+				} else if(total - paymentAmount > 0) {
+					//if payment is incomplete, print remaining and ask for another payment method
+					total = total - paymentAmount;
+					System.out.printf("Remaining: %.2f\r\n", total);				
+				} else if(paymentOption.equals("cash")) {
+					//if payment is more than the total & the payment type was cash, give change and exit
+					amtChange = getChange(total);
+					System.out.printf("Your change: %.2f\r\n", amtChange);
+					break;
+				}
 				
 			} else if (paymentOption.equals("check")) {
 				//if check, get check number (and validate user inputs) and add obj. to payments
 				String check = Validator.checkNumber();
 				PaymentType payment = new Check(check,paymentAmount);
 				payments.add(payment);
+				if(total - paymentAmount == 0.0) {
+					//if payment is complete, exit
+					break;
+				} else if(total - paymentAmount > 0) {
+					//if payment is incomplete, print remaining and ask for another payment method
+					total = total - paymentAmount;
+					System.out.printf("Remaining: %.2f\r\n", total);				
+				} else if(paymentOption.equals("cash")) {
+					//if payment is more than the total & the payment type was cash, give change and exit
+					amtChange = getChange(total,paymentAmount);
+					System.out.printf("Your change: %.2f\r\n", amtChange);
+					break;
+				}
 				
 			} else {
 				//validate user selection and retry
 				System.out.println("Invalid selection, please try again.");
 			}
 			
-			if(total - paymentAmount == 0) {
-				//if payment is complete, exit
-				break;
-			} else if(total - paymentAmount > 0) {
-				//if payment is incomplete, print remaining and ask for another payment method
-				total = total - paymentAmount;
-				System.out.printf("Remaining: %.2f\r\n", total);				
-			} else if(paymentOption.equals("cash")) {
-				//if payment is more than the total & the payment type was cash, give change and exit
-				amtChange = getChange(total);
-				System.out.printf("Your change: %.2f\r\n", amtChange);
-				break;
-			}
 				
 		} while(true);
 		
@@ -215,10 +241,9 @@ public class MidTerm {
 	}
 	
 	//Calculates change when the user pays with cash
-	public static double getChange(double total) {
-		System.out.println("How much money are you giving us?");
-		double moneyIn = scnr.nextDouble();
-		double change = total - moneyIn;
+	public static double getChange(double total,double amtGiven) {
+
+		double change = total - amtGiven;
 		return change;
 		
 		
