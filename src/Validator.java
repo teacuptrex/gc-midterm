@@ -169,8 +169,7 @@ public class Validator {
 		}
 		//credit cardvalidator
 		public static boolean isNumberValid(String creditCardNumber) {
-
-			if (creditCardNumber.matches("([1-9]{4})-([1-9]{4})-([1-9]{4})-([1-9]{4})")) {
+			if (creditCardNumber.matches("([0-9]{4})-([0-9]{4})-([0-9]{4})-([0-9]{4})")) {
 				return true;
 			} else {
 				return false;

@@ -4,11 +4,6 @@ import java.util.Scanner;
 public class Check extends PaymentType {
 	
 	
-	public static void main(String[] args) {
-		checkNumber();
-	}
-	
-	
 	public static Scanner scnr = new Scanner(System.in);
 
 	private String check;

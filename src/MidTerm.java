@@ -123,7 +123,7 @@ public class MidTerm {
 		
 		finalTotal = subtotal * salesTax;
 		System.out.printf("Subtotal: %.2f\r\n", subtotal);
-		System.out.printf("SalesTax: %.2f\r\n", salesTax);
+		System.out.printf("SalesTax: %.2f\r\n", salesTax - 1);
 		System.out.printf("FinalTotal: %.2f\r\n", finalTotal);
 		
 		return finalTotal;

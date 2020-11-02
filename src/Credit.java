@@ -7,6 +7,7 @@ public class Credit extends PaymentType {
 	private int CVV;
 	private String cardholder;
 	private String creditCardNumber;
+	
 	//to String
 	@Override
 	public String toString() {
