@@ -32,7 +32,7 @@ class MidtermJUnitTest {
 	@Test
 	void testGetChange2() {
 		double expected = -1.0;
-		double actual = MidTerm.getChange(6, 5);
+		double actual = MidTerm.getChange(5, 6);
 		assertEquals(expected,actual);
 	}
 	
