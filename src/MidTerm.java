@@ -58,7 +58,7 @@ public class MidTerm {
 				//if cash, create new Cash obj. and add to payments
 				PaymentType payment = new Cash(paymentAmount);
 				payments.add(payment);
-				if(total - paymentAmount == 0.0) {
+				if((total - paymentAmount) == 0.0) {
 					//if payment is complete, exit
 					break;
 				} else if(total - paymentAmount > 0) {
