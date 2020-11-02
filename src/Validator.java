@@ -138,7 +138,7 @@ public class Validator {
 	//Function that obtains the credit card number and validates it with the credit card validator
 		public static String getCreditCardNumber() {
 
-			String creditCardFinal = null;
+			String creditCardFinal = "";
 			boolean flag = true;
 
 			do {
@@ -179,7 +179,7 @@ public class Validator {
 		//Checks if the cardholder name is a valid name. First and last name with optional middle initial.
 		public static String checkCardholderName() {
 			boolean flag = true;
-			String name = null;
+			String name = "";
 			do {
 				try {
 					System.out.println("Please enter your cardholder name");

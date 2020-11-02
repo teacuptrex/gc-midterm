@@ -1,3 +1,4 @@
+import java.awt.EventQueue;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
+
+import start.MidTermSwingApp;
 
 
 public class MidTerm {
@@ -26,11 +29,11 @@ public class MidTerm {
 
 
 		
-		createMeals();
+		menu = createMeals();
 		//sets up menu from file
 		
 		System.out.println("Welcome to BurgerFi! Please take a look at our menu and place an order.");
-		
+
 		// displayMenu();
 		displayMenu(menu);
 		
@@ -118,6 +121,7 @@ public class MidTerm {
 		
 	}
 
+
 	public static ArrayList<Meal> createMeals() {
 		//store file path for use in reading meals .txt file		
 		String fileName = "meals.txt"; //add file name here after creation
@@ -129,8 +133,8 @@ public class MidTerm {
 			ArrayList<Meal> meals = new ArrayList<>();
 			
 			for(String entry : entries) {
-				String[] ln = entry.split("~");//split on delimiter in file, keep in mind any regex-reserved characters which will need to be escaped out using //
-				meals.add(new Meal());//add specific parsers at specified indices to match the variable types for Meal class based on expected file input
+				String[] ln = entry.split("~~~");//split on delimiter in file, keep in mind any regex-reserved characters which will need to be escaped out using //
+				meals.add(new Meal(ln[0],ln[1],ln[2],Integer.parseInt(ln[3]),Double.parseDouble(ln[4])));//add specific parsers at specified indices to match the variable types for Meal class based on expected file input
 			}
 			return meals;
 		}
@@ -172,6 +176,7 @@ public class MidTerm {
 			if(orderItems.isEmpty() || orderItems.containsKey(key) == false) {
 				orderItems.put(key, quantity);
 			} else {
+				quantity = quantity + orderItems.get(key);
 				orderItems.replace(key,quantity);
 			} 
 			
@@ -195,15 +200,15 @@ public class MidTerm {
 		for(Map.Entry<Integer,Integer> entry : orderItems.entrySet()) {
 			Meal pr = new Meal();
 			pr = menu.get(entry.getKey()-1); // order number to meal from menu static class list
-			System.out.println();//print out meal variables like name and price and orderItem variables like quantity
-			double itemTotal = entry.getValue(); // * meal pr.getPrice();
+			System.out.print("\r\n" + pr.getName() + " " + entry.getValue() + " at $" + pr.getPrice() + " each.");//print out meal variables like name and price and orderItem variables like quantity
+			double itemTotal = entry.getValue() * pr.getPrice(); // * meal pr.getPrice();
 			System.out.println();// print out individual item total	
 			subtotal += itemTotal;
-		}
+		}//String category, String name, String description, int calories, double price
 		
 		finalTotal = subtotal * salesTax;
 		System.out.printf("Subtotal: %.2f\r\n", subtotal);
-		System.out.printf("SalesTax: %.2f\r\n", salesTax);
+		System.out.printf("SalesTax: %s\r\n", "6.0%");
 		System.out.printf("FinalTotal: %.2f\r\n", finalTotal);
 		
 		return finalTotal;
