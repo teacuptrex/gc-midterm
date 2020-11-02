@@ -1,5 +1,7 @@
-import java.awt.EventQueue;
+
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -58,7 +60,8 @@ public class MidTerm {
 				//if cash, create new Cash obj. and add to payments
 				PaymentType payment = new Cash(paymentAmount);
 				payments.add(payment);
-				if((total - paymentAmount) == 0.0) {
+				BigDecimal bdCheck = BigDecimal.valueOf(total - paymentAmount);
+				if((bdCheck.setScale(2,RoundingMode.FLOOR)) == BigDecimal.valueOf(0.00).setScale(2,RoundingMode.FLOOR)) {
 					//if payment is complete, exit
 					break;
 				} else if(total - paymentAmount > 0) {
@@ -79,7 +82,8 @@ public class MidTerm {
 				int cvv = Validator.checkCVV();
 				PaymentType payment = new Credit(cardNum,name,cvv,paymentAmount);
 				payments.add(payment);
-				if(total - paymentAmount == 0.0) {
+				BigDecimal bdCheck = BigDecimal.valueOf(total - paymentAmount);
+				if((bdCheck.setScale(2,RoundingMode.FLOOR)) == BigDecimal.valueOf(0.00).setScale(2,RoundingMode.FLOOR)) {
 					//if payment is complete, exit
 					break;
 				} else if(total - paymentAmount > 0) {
@@ -98,7 +102,8 @@ public class MidTerm {
 				String check = Validator.checkNumber();
 				PaymentType payment = new Check(check,paymentAmount);
 				payments.add(payment);
-				if(total - paymentAmount == 0.0) {
+				BigDecimal bdCheck = BigDecimal.valueOf(total - paymentAmount);
+				if((bdCheck.setScale(2,RoundingMode.FLOOR)) == BigDecimal.valueOf(0.00).setScale(2,RoundingMode.FLOOR)) {
 					//if payment is complete, exit
 					break;
 				} else if(total - paymentAmount > 0) {
